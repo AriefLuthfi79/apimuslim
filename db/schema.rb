@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_08_01_145108) do
 
-  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "bookmarks", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "user_id"
     t.index ["event_id", "user_id"], name: "index_bookmarks_on_event_id_and_user_id", unique: true
@@ -20,21 +20,19 @@ ActiveRecord::Schema.define(version: 2018_08_01_145108) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "events", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name", null: false
     t.text "description", null: false
     t.string "date", null: false
-    t.string "place", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "start_at"
     t.string "image_uri"
     t.string "image_mime"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "user_id"
     t.index ["event_id", "user_id"], name: "index_likes_on_event_id_and_user_id", unique: true
@@ -42,7 +40,23 @@ ActiveRecord::Schema.define(version: 2018_08_01_145108) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_tests_on_post_id"
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", null: false

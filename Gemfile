@@ -5,7 +5,6 @@ ruby '2.4.0'
 
 gem 'rails', '~> 5.2.0'
 gem 'active_model_serializers'
-gem 'mysql2'
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
@@ -26,6 +25,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'minitest-reporters'
   gem 'faker'
+  gem 'sqlite3'
   gem 'database_cleaner'
 end
 
@@ -39,7 +39,6 @@ end
 group :production do
   gem 'pg'
 end
-
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
